@@ -1,3 +1,81 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+nav {
+  @apply flex p-4;
+}
+
+.nav_button_outlined {
+  @apply border-blue-500 text-blue-500 text-xs border-2 font-bold uppercase p-2 rounded-md;
+}
+
+a {
+  @apply text-blue-500 font-semibold;
+}
+
+.form_wrapper {
+  @apply pt-2 pb-4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form_container {
+  @apply bg-white drop-shadow-md rounded-md sm:w-2/5 w-full px-4 py-8;
+}
+
+.form_title {
+  @apply text-2xl font-bold mb-4 uppercase;
+}
+
+.form_content {
+  @apply flex flex-col gap-2;
+}
+
+.form_input {
+  @apply p-2 border-2 border-gray-200 rounded-md focus:border-blue-500 focus:outline-none;
+}
+
+.form_button_action {
+  @apply bg-blue-500 text-white font-light rounded-md p-2 w-1/2;
+  margin: 0 auto;
+}
+
+.dashboard_wrapper {
+  @apply flex flex-col p-8 gap-8 justify-center sm:flex-row;
+}
+
+.card_avatar {
+  @apply bg-white drop-shadow-md p-8 rounded-md;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.addUrl_form {
+  @apply flex flex-col gap-2;
+}
+
+.dashboard_urls {
+  @apply flex flex-col gap-8;
+}
+
+.urlCard_container {
+  @apply bg-white p-4 drop-shadow-md rounded-md;
+}
+
+.urlCard_header {
+  @apply mb-2 flex justify-between align-middle gap-4;
+}
+
+.error_container {
+  @apply p-8 h-screen;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
