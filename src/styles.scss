@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+nav {
+  @apply flex p-4;
+}
+a {
+  @apply text-blue-500 font-semibold;
+}
+
+.form_wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  @apply pt-2 pb-4;
+}
+
+.form_container {
+  @apply bg-white drop-shadow-md rounded-md sm:w-2/5 w-full px-4 py-8;
+}
+
+.form_title {
+  @apply text-2xl font-bold mb-4 uppercase;
+}
+
+.form_content {
+  @apply flex flex-col gap-2;
+}
+
+.form_input {
+  @apply p-2 border-2 border-gray-200 rounded-md focus:border-blue-500 focus:outline-none;
+}
+
+.form_button_action {
+  @apply bg-blue-500 text-white font-light rounded-md p-2 w-1/2;
+  margin: 0 auto;
+}

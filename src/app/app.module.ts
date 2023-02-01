@@ -9,7 +9,7 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LogoComponent } from './components/logo/logo.component';
-import { CardComponent } from './components/card/card.component';
+
 import { NavButtonComponent } from './components/nav-button/nav-button.component';
 import { UrlCardsContainerComponent } from './components/url-cards-container/url-cards-container.component';
 import { UrlCardComponent } from './components/url-card/url-card.component';
@@ -24,19 +24,14 @@ import { UrlInputComponent } from './components/url-input/url-input.component';
     DashboardComponent,
     NotFoundComponent,
     LogoComponent,
-    CardComponent,
     NavButtonComponent,
     UrlCardsContainerComponent,
     UrlCardComponent,
     AvatarCardComponent,
-    UrlInputComponent
+    UrlInputComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    StoreModule.forRoot({}, {})
-  ],
+  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
