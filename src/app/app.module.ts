@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -30,7 +30,12 @@ import { UrlInputComponent } from './components/url-input/url-input.component';
     AvatarCardComponent,
     UrlInputComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {})],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    StoreModule.forRoot({}, {}),
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })
