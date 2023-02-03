@@ -1,10 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  FormControl,
-  Validators,
-  FormGroup,
-  FormBuilder,
-} from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -39,9 +34,9 @@ export class SignupComponent implements OnInit {
           Validators.maxLength(20),
         ],
       ],
-      email: ['', [Validators.required, Validators.email]],
+      email: [null, [Validators.required, Validators.email]],
       password: [
-        '',
+        null,
         [
           Validators.required,
           Validators.minLength(6),

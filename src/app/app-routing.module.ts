@@ -6,7 +6,12 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full',
+  },
+  { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: '**', component: NotFoundComponent },
