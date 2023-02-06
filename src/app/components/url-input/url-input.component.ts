@@ -14,10 +14,18 @@ export class UrlInputComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
+  addUrl(event: Event) {
+    event.preventDefault();
+    if (this.form.valid) {
+      const value = this.form.value;
+      console.log(value);
+    } else {
+      this.form.markAllAsTouched();
+    }
+  }
   private buildForm() {
     this.form = this.formBuilder.group({
-      name: [
+      urlName: [
         '',
         [
           Validators.required,
@@ -30,13 +38,20 @@ export class UrlInputComponent implements OnInit {
         [
           Validators.required,
           Validators.pattern(
-            '^(http(s)://.)[-a-zA-Z0-9@:%._+~#=]{2,256}.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)$'
+            '^(https?:\\/\\/)?' + // protocol
+              '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+              '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+              '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+              '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+              '(\\#[-a-z\\d_]*)?$' // fragment locator
           ),
         ],
       ],
     });
   }
-
+  get urlName() {
+    return this.form.get('urlName');
+  }
   get url() {
     return this.form.get('url');
   }

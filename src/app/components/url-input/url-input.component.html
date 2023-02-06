@@ -1,10 +1,42 @@
 <section class="addUrl_container bg-white drop-shadow-md rounded-md p-8">
-  <form class="addUrl_form">
+  <form class="addUrl_form" [formGroup]="form" (ngSubmit)="addUrl($event)">
     <label for="urlText">Url 2 Save</label>
-    <input class="form_input" type="url" id="urlText" />
+    <input
+      [class.formField_valid]="url?.valid && url?.touched"
+      [class.formField_invalid]="url?.invalid && url?.touched"
+      class="form_input"
+      type="url"
+      id="urlText"
+      placeholder="eg: www.crishood.com"
+      formControlName="url"
+    />
+    <span *ngIf="url?.touched && url?.hasError('required')" class="form_error"
+      >This field is required</span
+    >
+    <span *ngIf="url?.touched && url?.errors" class="form_error">
+      Type a valid url
+    </span>
     <label for="urlName">Name</label>
-    <input class="form_input" type="text" id="urlName" />
-
-    <button class="form_button_action">Add</button>
+    <input
+      [class.formField_valid]="urlName?.valid && urlName?.touched"
+      [class.formField_invalid]="urlName?.invalid && urlName?.touched"
+      class="form_input"
+      type="text"
+      id="urlName"
+      placeholder="eg: CrisHood's Beatstore"
+      formControlName="urlName"
+    />
+    <span
+      *ngIf="urlName?.touched && urlName?.hasError('required')"
+      class="form_error"
+      >This field is required</span
+    >
+    <span
+      *ngIf="urlName?.hasError('maxlength') || urlName?.hasError('minlength')"
+      class="form_error"
+    >
+      Name must be between 3 and 20 characters
+    </span>
+    <button class="form_button_action" type="submit">Add</button>
   </form>
 </section>
