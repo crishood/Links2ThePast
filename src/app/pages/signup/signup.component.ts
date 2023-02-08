@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-signup',
@@ -9,7 +10,10 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 export class SignupComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService
+  ) {
     this.buildForm();
   }
 
@@ -19,7 +23,9 @@ export class SignupComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      console.log(value);
+      this.userService.signUp(value).subscribe((user) => {
+        console.log(user);
+      });
     } else {
       this.form.markAllAsTouched();
     }

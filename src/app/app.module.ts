@@ -10,12 +10,13 @@ import { SignupComponent } from './pages/signup/signup.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { LogoComponent } from './components/logo/logo.component';
-
 import { NavButtonComponent } from './components/nav-button/nav-button.component';
 import { UrlCardsContainerComponent } from './components/url-cards-container/url-cards-container.component';
 import { UrlCardComponent } from './components/url-card/url-card.component';
 import { AvatarCardComponent } from './components/avatar-card/avatar-card.component';
 import { UrlInputComponent } from './components/url-input/url-input.component';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,13 @@ import { UrlInputComponent } from './components/url-input/url-input.component';
     HttpClientModule,
     StoreModule.forRoot({}, {}),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

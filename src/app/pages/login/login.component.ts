@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,10 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 export class LoginComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private userService: UserService
+  ) {
     this.buildForm();
   }
 
@@ -19,7 +23,7 @@ export class LoginComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      console.log(value);
+      this.userService.login(value).subscribe((user) => {});
     } else {
       this.form.markAllAsTouched();
     }
