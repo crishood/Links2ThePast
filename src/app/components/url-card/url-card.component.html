@@ -1,11 +1,11 @@
 <div class="urlCard_container">
   <div class="urlCard_header">
-    <a href="" class="text-md">www.crishood.com</a>
+    <a [href]="link" class="text-md" target="_blank">{{ url }}</a>
     <button>
       <i class="fa-solid fa-trash text-red-600"></i>
     </button>
   </div>
   <div class="urlCard_description">
-    <p>URL Name</p>
+    <p>{{ description }}</p>
   </div>
 </div>

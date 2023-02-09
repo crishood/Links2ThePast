@@ -1,9 +1,5 @@
 <section class="card_avatar">
-  <img
-    class="w-32 rounded-full"
-    src="https://randomuser.me/api/portraits/men/31.jpg"
-    alt=""
-  />
-  <h2 class="font-bold">Jeff Brown</h2>
-  <h3>jeff.brow@example.com</h3>
+  <img class="w-32 rounded-full" [src]="avatar" alt="user-avatar" />
+  <h2 class="font-bold">{{ name }}</h2>
+  <h3>{{ mail }}</h3>
 </section>
