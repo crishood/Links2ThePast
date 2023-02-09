@@ -23,10 +23,9 @@ export class UserService {
       );
   }
   login(dto: LoginUserDTO) {
-    return this.http.post<Auth>(`${this.apiUrl}login`, dto).pipe(
-      tap((response) => this.tokenService.saveToken(response.token)),
-      switchMap(() => this.getUser('vskyrlu2qp'))
-    );
+    return this.http
+      .post<Auth>(`${this.apiUrl}login`, dto)
+      .pipe(tap((response) => this.tokenService.saveToken(response.token)));
   }
   getUser(id: string) {
     return this.http.get<User>(`${this.apiUrl}user/${id}`, {

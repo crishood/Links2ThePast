@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -12,7 +13,8 @@ export class SignupComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {
     this.buildForm();
   }
@@ -23,8 +25,8 @@ export class SignupComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      this.userService.signUp(value).subscribe((user) => {
-        console.log(user);
+      this.userService.signUp(value).subscribe(() => {
+        this.router.navigate(['/dashboard']);
       });
     } else {
       this.form.markAllAsTouched();
