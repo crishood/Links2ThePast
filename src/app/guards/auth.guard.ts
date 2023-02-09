@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   ActivatedRouteSnapshot,
   CanActivate,
@@ -12,7 +13,7 @@ import { TokenService } from '../services/token.service';
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private tokenService: TokenService) {}
+  constructor(private tokenService: TokenService, private router: Router) {}
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
@@ -22,6 +23,10 @@ export class AuthGuard implements CanActivate {
     | boolean
     | UrlTree {
     const token = this.tokenService.getToken();
-    return token ? true : false;
+    if (!token) {
+      this.router.navigate(['/login']);
+      return false;
+    }
+    return true;
   }
 }
