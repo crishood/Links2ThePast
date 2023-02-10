@@ -1,6 +1,10 @@
-import { Component, OnInit, Output } from '@angular/core';
-import { LinkService } from 'src/app/services/link.service';
-import { Link } from 'src/app/models/link.model';
+import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+import { Link } from '../../models/link.model';
+import { getLinks } from '../../store/links.actions';
+import { State } from '../../store/links.reducer';
 
 @Component({
   selector: 'app-url-cards-container',
@@ -8,16 +12,16 @@ import { Link } from 'src/app/models/link.model';
   styleUrls: ['./url-cards-container.component.scss'],
 })
 export class UrlCardsContainerComponent implements OnInit {
-  public links!: Link[];
-  constructor(private linkService: LinkService) {}
+  links$!: Observable<Link[]>;
+
+  constructor(private store: Store<{ linksList: State }>) {}
 
   ngOnInit(): void {
+    this.links$ = this.store.select((state) => state.linksList.links);
     this.getLinks();
   }
 
   getLinks() {
-    this.linkService.getLinks().subscribe((links: Link[]) => {
-      this.links = links;
-    });
+    this.store.dispatch(getLinks());
   }
 }

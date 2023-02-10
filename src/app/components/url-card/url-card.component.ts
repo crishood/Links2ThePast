@@ -12,7 +12,6 @@ export class UrlCardComponent implements OnInit {
   description!: string;
   constructor() {}
   ngOnInit(): void {
-    console.log(this.link.url);
     this.url = this.link.url;
     this.description = this.link.description;
   }

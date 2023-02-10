@@ -18,8 +18,8 @@ import { UrlInputComponent } from './components/url-input/url-input.component';
 import { TokenInterceptor } from './interceptors/token.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { EffectsModule } from '@ngrx/effects';
-import { LinksEffects } from './store/links.effects';
-import { linksReducer } from './store/links.reducer';
+import { LinkEffects } from './store/links.effects';
+import { linkReducer } from './store/links.reducer';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 @NgModule({
@@ -41,13 +41,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    StoreModule.forRoot(
-      {
-        links: linksReducer,
-      },
-      {}
-    ),
-    EffectsModule.forRoot([LinksEffects]),
+    StoreModule.forRoot({
+      linksList: linkReducer,
+    }),
+    EffectsModule.forRoot([LinkEffects]),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
   ],
   providers: [

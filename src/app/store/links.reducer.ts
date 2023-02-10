@@ -1,31 +1,62 @@
+import { Action, createReducer, on } from '@ngrx/store';
 import {
-  createReducer,
-  on,
-  createSelector,
-  createFeatureSelector,
-} from '@ngrx/store';
-import { Link } from '../models/link.model';
-import { actions } from './links.actions';
+  getLinks,
+  getLinksSuccess,
+  getLinksError,
+  addLink,
+  addLinkSuccess,
+  addLinkError,
+  deleteLink,
+  deleteLinkSuccess,
+  deleteLinkError,
+} from './links.actions';
 
-export interface LinksState {
-  links: Link[];
+export interface State {
+  links: any[];
+  loading: boolean;
+  error: any;
 }
 
-export const initialState: LinksState = {
+const initialState: State = {
   links: [],
+  loading: false,
+  error: null,
 };
 
-export const linksReducer = createReducer(
+export const linkReducer = createReducer(
   initialState,
-  on(actions.getLinks, (state, { links }) => ({ ...state, links })),
-  on(actions.addLink, (state, { link }) => ({
+  on(getLinks, (state) => ({ ...state, loading: true, error: null })),
+  on(getLinksSuccess, (state, { links }) => ({
+    ...state,
+    links,
+  })),
+  on(getLinksError, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
+  })),
+  on(addLink, (state) => ({ ...state, loading: true, error: null })),
+  on(addLinkSuccess, (state, { link }) => ({
     ...state,
     links: [...state.links, link],
+    loading: false,
+    error: null,
   })),
-  on(actions.deleteLink, (state, { id }) => ({
+  on(addLinkError, (state, { error }) => ({ ...state, loading: false, error })),
+  on(deleteLink, (state) => ({ ...state, loading: true, error: null })),
+  on(deleteLinkSuccess, (state, { id }) => ({
     ...state,
     links: state.links.filter((link) => link.id !== id),
+    loading: false,
+    error: null,
+  })),
+  on(deleteLinkError, (state, { error }) => ({
+    ...state,
+    loading: false,
+    error,
   }))
 );
 
-export const selectLinksState = createFeatureSelector<LinksState>('links');
+export function reducer(state: State | undefined, action: Action) {
+  return linkReducer(state, action);
+}
