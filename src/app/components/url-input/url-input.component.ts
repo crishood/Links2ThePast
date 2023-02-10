@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import { addLink } from '../../store/links.actions';
 
 @Component({
   selector: 'app-url-input',
@@ -9,7 +11,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 export class UrlInputComponent implements OnInit {
   form!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private store: Store) {
     this.buildForm();
   }
 
@@ -18,7 +20,6 @@ export class UrlInputComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
-      console.log(value);
     } else {
       this.form.markAllAsTouched();
     }
