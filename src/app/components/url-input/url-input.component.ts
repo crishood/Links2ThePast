@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { addLink } from '../../store/links.actions';
+import { addLinkSuccess } from '../../store/links.actions';
 
 @Component({
   selector: 'app-url-input',
@@ -20,6 +20,7 @@ export class UrlInputComponent implements OnInit {
     event.preventDefault();
     if (this.form.valid) {
       const value = this.form.value;
+      this.store.dispatch(addLinkSuccess(value));
     } else {
       this.form.markAllAsTouched();
     }
