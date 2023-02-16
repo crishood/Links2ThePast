@@ -16,23 +16,25 @@
     <span *ngIf="url?.touched && url?.errors" class="form_error">
       Type a valid url
     </span>
-    <label for="urlName">Name</label>
+    <label for="description">Description</label>
     <input
-      [class.formField_valid]="urlName?.valid && urlName?.touched"
-      [class.formField_invalid]="urlName?.invalid && urlName?.touched"
+      [class.formField_valid]="description?.valid && description?.touched"
+      [class.formField_invalid]="description?.invalid && description?.touched"
       class="form_input"
       type="text"
-      id="urlName"
+      id="description"
       placeholder="eg: CrisHood's Beatstore"
-      formControlName="urlName"
+      formControlName="description"
     />
     <span
-      *ngIf="urlName?.touched && urlName?.hasError('required')"
+      *ngIf="description?.touched && description?.hasError('required')"
       class="form_error"
       >This field is required</span
     >
     <span
-      *ngIf="urlName?.hasError('maxlength') || urlName?.hasError('minlength')"
+      *ngIf="
+        description?.hasError('maxlength') || description?.hasError('minlength')
+      "
       class="form_error"
     >
       Name must be between 3 and 20 characters

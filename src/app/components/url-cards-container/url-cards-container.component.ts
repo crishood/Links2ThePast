@@ -17,7 +17,10 @@ export class UrlCardsContainerComponent implements OnInit {
   constructor(private store: Store<{ linksList: State }>) {}
 
   ngOnInit(): void {
-    this.links$ = this.store.select((state) => state.linksList.links);
+    this.links$ = this.store.select((state) => {
+      console.log(state.linksList.links);
+      return state.linksList.links;
+    });
     this.getLinks();
   }
 

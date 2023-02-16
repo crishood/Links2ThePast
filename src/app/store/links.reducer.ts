@@ -10,9 +10,10 @@ import {
   deleteLinkSuccess,
   deleteLinkError,
 } from './links.actions';
+import { Link } from '../models/link.model';
 
 export interface State {
-  links: any[];
+  links: Link[];
   loading: boolean;
   error: any;
 }
@@ -36,12 +37,15 @@ export const linkReducer = createReducer(
     error,
   })),
   on(addLink, (state) => ({ ...state, loading: true, error: null })),
-  on(addLinkSuccess, (state, { link }) => ({
-    ...state,
-    links: [...state.links, link],
-    loading: false,
-    error: null,
-  })),
+  on(addLinkSuccess, (state, { link }) => {
+    console.log('link reducer', link);
+    return {
+      ...state,
+      links: [...state.links, link],
+      loading: false,
+      error: null,
+    };
+  }),
   on(addLinkError, (state, { error }) => ({ ...state, loading: false, error })),
   on(deleteLink, (state) => ({ ...state, loading: true, error: null })),
   on(deleteLinkSuccess, (state, { id }) => ({
