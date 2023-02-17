@@ -36,6 +36,7 @@ a {
 
 .form_input {
   @apply p-2 border-2 border-gray-200 rounded-md focus:border-blue-500 focus:outline-none;
+  min-width: 247px;
 }
 
 .form_button_action {
@@ -76,11 +77,15 @@ a {
 }
 
 .dashboard_urls {
-  @apply flex flex-col gap-8;
+  @apply flex flex-col gap-8 flex-wrap;
 }
 
+.urlCards_container {
+  @apply flex flex-col gap-8;
+}
 .urlCard_container {
   @apply bg-white p-4 drop-shadow-md rounded-md;
+  min-width: 320px;
 }
 
 .urlCard_header {
