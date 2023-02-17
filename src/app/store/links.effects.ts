@@ -14,7 +14,6 @@ export class LinkEffects {
       mergeMap(() =>
         this.linkService.getLinks().pipe(
           map((links) => {
-            console.log('links', links);
             return getLinksSuccess({ links });
           }),
           catchError((error) => of(getLinksError({ error })))

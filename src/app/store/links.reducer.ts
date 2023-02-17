@@ -38,7 +38,6 @@ export const linkReducer = createReducer(
   })),
   on(addLink, (state) => ({ ...state, loading: true, error: null })),
   on(addLinkSuccess, (state, { link }) => {
-    console.log('link reducer', link);
     return {
       ...state,
       links: [...state.links, link],

@@ -18,7 +18,6 @@ export class UrlCardsContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.links$ = this.store.select((state) => {
-      console.log(state.linksList.links);
       return state.linksList.links;
     });
     this.getLinks();
